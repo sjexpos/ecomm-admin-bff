@@ -7,14 +7,14 @@ import java.util.Set;
 
 
 public class Routes {
-    public static final String API_PREFIX = "/bff";
+    public static final String API_PREFIX = "/api";
 
     public static final String AUTH_PATH = "/v1/auth";
     public static final String PRODUCTS_PATH = "/v1/products";
     public static final String CATEGORIES_PATH = API_PREFIX + "/v1/categories";
     public static final String BRANDS_PATH = "/v1/brands";
     public static final String BRANDS_QUANTITY_PATH = "/v1/brands-with-quantity";
-    public static final String ORDERS_PATH = "/v1/orders";
+    public static final String ORDERS_PATH = API_PREFIX + "/v1/orders";
     public static final String STRAINS_PATH = "/v1/strains";
     public static final String USERS_PATH = "/v1/users";
     public static final String DASHBOARD_PATH = "/v1/dashboard";

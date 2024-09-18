@@ -85,6 +85,7 @@ io/oigres/ecomm/bff/admin/api/model/CategoryWithQuantityResponse.class
 io/oigres/ecomm/bff/admin/api/model/products/strains/GetStrainApiResponse$GetStrainApiResponseBuilder.class
 io/oigres/ecomm/bff/admin/api/model/products/brands/UpdateBrandByIdApiResponse$UpdateBrandByIdApiResponseBuilder.class
 io/oigres/ecomm/bff/admin/api/model/CommonErrorHandlerResponse$CommonErrorHandlerResponseBuilder.class
+io/oigres/ecomm/bff/admin/usecases/orders/list/GetOrdersUseCase.class
 io/oigres/ecomm/bff/admin/api/model/OrderDispensaryResponse$OrderDispensaryResponseBuilder.class
 io/oigres/ecomm/bff/admin/api/model/profiles/users/CannaUserWithDetailResponse.class
 io/oigres/ecomm/bff/admin/api/model/profiles/dispensaries/DispensaryUserWithDetailRequest.class
@@ -155,11 +156,13 @@ io/oigres/ecomm/bff/admin/api/model/products/brands/BulkDeleteBrandApiResponse.c
 io/oigres/ecomm/bff/admin/api/Routes.class
 io/oigres/ecomm/bff/admin/api/model/StrainWithDetailRequest.class
 io/oigres/ecomm/bff/admin/api/model/profiles/dispensaries/DispensaryUserResponse.class
+io/oigres/ecomm/bff/admin/config/rpc/DispensariesServiceProxyEnhanced.class
 io/oigres/ecomm/bff/admin/api/model/StateApiResponse.class
 io/oigres/ecomm/bff/admin/api/model/products/brands/GetAllBrandsApiResponse.class
 io/oigres/ecomm/bff/admin/usecases/categories/list/ListCategoriesUseCase.class
 io/oigres/ecomm/bff/admin/api/model/DashboardSocialMediaResponse.class
 io/oigres/ecomm/bff/admin/api/model/products/BulkCPErrorResponse$BulkCPErrorResponseBuilder.class
+io/oigres/ecomm/bff/admin/config/rpc/AsyncDispensariesServiceProxyEnhanced.class
 io/oigres/ecomm/bff/admin/api/model/UserResponse.class
 io/oigres/ecomm/bff/admin/api/model/BulkDeleteProductsResponse.class
 io/oigres/ecomm/bff/admin/api/model/UserTypeApiResponse$UserTypeApiResponseBuilder.class
@@ -169,11 +172,13 @@ io/oigres/ecomm/bff/admin/api/model/EditCatalogProductRequest.class
 io/oigres/ecomm/bff/admin/api/model/profiles/dispensaries/CreateDispensaryUserApiRequest.class
 io/oigres/ecomm/bff/admin/api/model/enums/UserTypeApi.class
 io/oigres/ecomm/bff/admin/api/model/products/brands/UpdateBrandByIdApiRequest.class
+io/oigres/ecomm/bff/admin/config/rpc/AsyncOrdersServiceProxyEnhanced.class
 io/oigres/ecomm/bff/admin/api/model/profiles/admins/BulkDeleteAdminUsersRequest.class
 io/oigres/ecomm/bff/admin/api/model/products/brands/BulkDeleteBrandApiResponse$BulkDeleteBrandApiResponseBuilder.class
 io/oigres/ecomm/bff/admin/api/model/profiles/dispensaries/GetAllDispensariesApiResponse$GetAllDispensariesApiResponseBuilder.class
 io/oigres/ecomm/bff/admin/api/model/GetAllFlavorsApiResponse.class
 io/oigres/ecomm/bff/admin/api/Constants.class
+io/oigres/ecomm/bff/admin/controller/OrdersController.class
 io/oigres/ecomm/bff/admin/api/model/profiles/growers/GrowerUserResponse.class
 io/oigres/ecomm/bff/admin/config/TracingConfiguration.class
 io/oigres/ecomm/bff/admin/api/model/OrderStatusAmountApiResponse.class
@@ -209,6 +214,7 @@ io/oigres/ecomm/bff/admin/api/model/conditions/GetAllConditionsApiResponse.class
 io/oigres/ecomm/bff/admin/api/model/profiles/admins/BulkDeleteAdminUsersResponse$BulkDeleteAdminUsersResponseBuilder.class
 io/oigres/ecomm/bff/admin/api/model/ProductToApproveResponse.class
 io/oigres/ecomm/bff/admin/api/model/products/strains/GetAllStrainApiResponse.class
+io/oigres/ecomm/bff/admin/usecases/utils/TimeConverter.class
 io/oigres/ecomm/bff/admin/api/model/GetEffectByIdApiResponse.class
 io/oigres/ecomm/bff/admin/api/model/products/brands/UpdateBrandByIdApiResponse.class
 io/oigres/ecomm/bff/admin/api/model/profiles/dispensaries/UpdateDispensaryUserApiResponse$UpdateDispensaryUserApiResponseBuilder.class
@@ -221,6 +227,7 @@ io/oigres/ecomm/bff/admin/api/model/AddCatalogProductResponse.class
 io/oigres/ecomm/bff/admin/api/model/profiles/users/UpdateCannaUserApiRequest.class
 io/oigres/ecomm/bff/admin/api/model/products/catalog/ProductIdWithPublicationIdListDto.class
 io/oigres/ecomm/bff/admin/api/model/profiles/admins/AdminUserWithDetailResponse.class
+io/oigres/ecomm/bff/admin/config/rpc/OrdersServiceProxyEnhanced.class
 io/oigres/ecomm/bff/admin/api/model/effects/GetAllEffectsApiResponse.class
 io/oigres/ecomm/bff/admin/api/model/profiles/users/ActiveCannaUserRequest.class
 io/oigres/ecomm/bff/admin/api/model/ZipCodeApiResponse$ZipCodeApiResponseBuilder.class

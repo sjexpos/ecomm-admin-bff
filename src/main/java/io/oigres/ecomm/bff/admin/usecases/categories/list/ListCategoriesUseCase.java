@@ -15,10 +15,10 @@ import java.util.List;
 @RequiredArgsConstructor
 @Component
 public class ListCategoriesUseCase  implements UseCase {
-    private final CategoryService categoryMS;
+    private final CategoryService categoryService;
 
     public PaginatedResponse<CategoryResponse> listCategories(int pageNumber, int pageSize) {
-        PageResponse<GetAllCategoriesResponse> pages = categoryMS.getAllCategories(PageableRequestImpl.of(pageNumber, pageSize));
+        PageResponse<GetAllCategoriesResponse> pages = categoryService.getAllCategories(PageableRequestImpl.of(pageNumber, pageSize));
         List<CategoryResponse> categories = pages.getContent().stream()
                 .map(el -> new CategoryResponse(el.getId(), el.getName())
                 )

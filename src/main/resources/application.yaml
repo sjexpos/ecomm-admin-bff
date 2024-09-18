@@ -85,7 +85,44 @@ resilience4j:
         sliding-window-size: 10
         register-health-indicator: true
         ignore-exceptions:
-          - io.oigres.ecomm.service.products.model.exception.NotFoundException
+          - io.oigres.ecomm.service.products.api.RemoteMethodArgumentNotValidException
+          - io.oigres.ecomm.service.users.api.model.BusinessApiException
+          - io.oigres.ecomm.service.products.model.BusinessApiException
+          - io.oigres.ecomm.service.orders.model.BusinessApiException
+  retry:
+    configs:
+      default:
+        maxAttempts: 3
+        waitDuration: 100
+        retryExceptions:
+          - io.oigres.ecomm.service.products.api.RemoteServiceUnavailableException
+          - org.springframework.web.client.HttpServerErrorException
+          - org.springframework.web.reactive.function.client.WebClientRequestException
+          - java.util.concurrent.TimeoutException
+          - java.io.IOException
+        ignoreExceptions:
+          - io.oigres.ecomm.service.products.api.RemoteMethodArgumentNotValidException
+          - io.oigres.ecomm.service.users.api.model.BusinessApiException
+          - io.oigres.ecomm.service.products.model.BusinessApiException
+          - io.oigres.ecomm.service.orders.model.BusinessApiException
+        fail-after-max-retries: true
+    instances:
+      remote-get-by-id-200-expected:
+        baseConfig: default
+      remote-get-page-200-expected:
+        baseConfig: default
+        maxAttempts: 2
+  timelimiter:
+    configs:
+      default:
+        cancelRunningFuture: true
+        timeoutDuration: 1s
+    instances:
+      remote-get-by-id:
+        timeoutDuration: 250ms
+        cancelRunningFuture: true
+      remote-get-page:
+        baseConfig: default
 
 
 logging:

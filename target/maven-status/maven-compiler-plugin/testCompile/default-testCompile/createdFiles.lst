@@ -1,1 +1,2 @@
-io/oigres/ecomm/bff/admin/controller/CategoriesControllerTest.class
+io/oigres/ecomm/bff/admin/usecases/categories/list/ListCategoriesUseCaseTest.class
+io/oigres/ecomm/bff/admin/usecases/orders/list/GetOrdersUseCaseTest.class
