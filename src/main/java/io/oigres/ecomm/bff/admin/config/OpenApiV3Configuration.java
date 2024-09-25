@@ -1,6 +1,5 @@
 package io.oigres.ecomm.bff.admin.config;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,22 +12,19 @@ public class OpenApiV3Configuration {
 
     @Bean
     public OpenAPI customOpenAPI(
-            @Value("${ecomm.bff.admin.version}") String appVersion,
-            @Value("${ecomm.bff.admin.name}") String appName,
-            @Value("${ecomm.termsOfService}") String appTermsOfService,
-            @Value("${ecomm.license}") String appLicense
+            OpenApiV3Properties openApiV3Properties
     ) {
         return new OpenAPI()
                 .info(
                         new Info()
-                                .title(appName)
-                                .version(appVersion)
-                                .description("EComm - Admin backend for frontend.")
-                                .termsOfService(appTermsOfService)
+                                .title(openApiV3Properties.getBff().getAdmin().getName())
+                                .version(openApiV3Properties.getBff().getAdmin().getVersion())
+                                .description(openApiV3Properties.getBff().getAdmin().getDescription())
+                                .termsOfService(openApiV3Properties.getTermsOfService())
                                 .license(
                                         new License()
                                                 .name("Private License")
-                                                .url(appLicense)
+                                                .url(openApiV3Properties.getLicense())
                                 )
                 );
     }

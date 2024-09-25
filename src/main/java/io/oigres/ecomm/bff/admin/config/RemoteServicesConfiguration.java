@@ -13,7 +13,6 @@ import io.oigres.ecomm.service.products.model.CategoryService;
 import io.oigres.ecomm.service.products.model.StockTransactionsService;
 import io.oigres.ecomm.service.users.api.UsersService;
 import io.oigres.ecomm.service.users.api.UsersServiceProxy;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,41 +24,41 @@ public class RemoteServicesConfiguration {
     @Bean
     public UsersService asyncConsumerUsersService(
             WebClient.Builder builder,
-            @Value("${ecomm.bff.users.baseUri}") String usersBaseUri
+            BackendServicesProperties backendProperties
     ) {
-        return new UsersServiceProxy(builder.baseUrl(usersBaseUri).build());
+        return new UsersServiceProxy(builder.baseUrl(backendProperties.getUsers().getBaseUri()).build());
     }
 
     @Bean
     public StockTransactionsService stockTransactionService(
             WebClient.Builder builder,
-            @Value("${ecomm.bff.products.baseUri}") String productsBaseUri
+            BackendServicesProperties backendProperties
     ) {
-        return new StockTransactionServiceProxy(builder.baseUrl(productsBaseUri).build());
+        return new StockTransactionServiceProxy(builder.baseUrl(backendProperties.getProducts().getBaseUri()).build());
     }
 
     @Bean
     public CategoryService categoryService(
             WebClient.Builder builder,
             RestTemplateBuilder templateBuilder,
-            @Value("${ecomm.bff.products.baseUri}") String productsBaseUri
+            BackendServicesProperties backendProperties
     ) {
         return new CategoryServiceProxyEnhanced(
                 new CategoryServiceProxy(
-                        builder.baseUrl(productsBaseUri).build()
+                        builder.baseUrl(backendProperties.getProducts().getBaseUri()).build()
                 ),
-                templateBuilder.rootUri(productsBaseUri).build()
+                templateBuilder.rootUri(backendProperties.getProducts().getBaseUri()).build()
         );
     }
 
     @Bean
     public IDispensaryService dispensariesService(
             WebClient.Builder builder,
-            @Value("${ecomm.bff.products.baseUri}") String productsBaseUri
+            BackendServicesProperties backendProperties
     ) {
         return new DispensariesServiceProxyEnhanced(
                 new DispensariesServiceProxy(
-                        builder.baseUrl(productsBaseUri).build()
+                        builder.baseUrl(backendProperties.getProducts().getBaseUri()).build()
                 )
         );
     }
@@ -67,11 +66,11 @@ public class RemoteServicesConfiguration {
     @Bean
     public AsyncDispensariesService asyncDispensariesService(
             WebClient.Builder builder,
-            @Value("${ecomm.bff.products.baseUri}") String productsBaseUri
+            BackendServicesProperties backendProperties
     ) {
         return new AsyncDispensariesServiceProxyEnhanced(
                 new DispensariesServiceProxy(
-                        builder.baseUrl(productsBaseUri).build()
+                        builder.baseUrl(backendProperties.getProducts().getBaseUri()).build()
                 )
         );
     }
@@ -79,11 +78,11 @@ public class RemoteServicesConfiguration {
     @Bean
     public OrdersService ordersService(
             WebClient.Builder builder,
-            @Value("${ecomm.bff.orders.baseUri}") String ordersBaseUri
+            BackendServicesProperties backendProperties
     ) {
         return new OrdersServiceProxyEnhanced(
                 new OrdersServiceProxy(
-                        builder.baseUrl(ordersBaseUri).build()
+                        builder.baseUrl(backendProperties.getOrders().getBaseUri()).build()
                 )
         );
     }
@@ -91,11 +90,11 @@ public class RemoteServicesConfiguration {
     @Bean
     public AsyncOrdersService asyncOrdersService(
             WebClient.Builder builder,
-            @Value("${ecomm.bff.orders.baseUri}") String ordersBaseUri
+            BackendServicesProperties backendProperties
     ) {
         return new AsyncOrdersServiceProxyEnhanced(
                 new OrdersServiceProxy(
-                        builder.baseUrl(ordersBaseUri).build()
+                        builder.baseUrl(backendProperties.getOrders().getBaseUri()).build()
                 )
         );
     }
