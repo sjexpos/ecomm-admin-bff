@@ -43,7 +43,7 @@ RUN echo "#!/usr/bin/env bash" > /opt/entrypoint.sh && \
     echo "echo \"ORDERS_SERVICE_BASEURI: \$ORDERS_SERVICE_BASEURI \" " >> /opt/entrypoint.sh && \
     echo "echo \"===============================================\" " >> /opt/entrypoint.sh && \
     echo "" >> /opt/entrypoint.sh && \
-    echo "java -Xms\$JAVA_XMS -Xmx\$JAVA_XMX \
+    echo "java -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -Xms\$JAVA_XMS -Xmx\$JAVA_XMX \
         -Dserver.port=\$PORT \
         -Dmanagement.server.port=\$PORT \
         -Dspring.data.redis.host=\$REDIS_HOST \
