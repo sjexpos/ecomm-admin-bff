@@ -232,6 +232,13 @@
       <artifactId>spring-boot-starter-aop</artifactId>
     </dependency>
 
+    <!-- Cloud Native Spring Admin connector -->
+    <dependency>
+      <groupId>de.codecentric</groupId>
+      <artifactId>spring-boot-admin-starter-client</artifactId>
+      <version>${spring-boot.version}</version>
+    </dependency>
+
     <!-- Testing -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -475,6 +482,7 @@
             <id>repackage</id>
             <goals>
               <goal>repackage</goal>
+              <goal>build-info</goal>
             </goals>
           </execution>
         </executions>
