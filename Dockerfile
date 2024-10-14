@@ -3,6 +3,7 @@ FROM amazoncorretto:21-al2-jdk
 # ENV JAVA_XMS             <set initial Java heap size>
 # ENV JAVA_XMX             <set maximum Java heap size>
 # ENV PORT                 <port to run server>
+# ENV MONITORING_URL
 # ENV REDIS_HOST           <redis server host name>
 # ENV REDIS_PORT           <redis server port>
 # ENV TRACING_URL
@@ -35,6 +36,7 @@ RUN echo "#!/usr/bin/env bash" > /opt/entrypoint.sh && \
     echo "echo \"JAVA_XMX: \$JAVA_XMX \" " >> /opt/entrypoint.sh && \
     echo "echo \"===============================================\" " >> /opt/entrypoint.sh && \
     echo "echo \"PORT: \$PORT \" " >> /opt/entrypoint.sh && \
+    echo "echo \"MONITORING_URL: \$MONITORING_URL\" " >> /opt/entrypoint.sh && \
     echo "echo \"REDIS_HOST: \$REDIS_HOST \" " >> /opt/entrypoint.sh && \
     echo "echo \"REDIS_PORT: \$REDIS_PORT \" " >> /opt/entrypoint.sh && \
     echo "echo \"TRACING_URL: \$TRACING_URL \" " >> /opt/entrypoint.sh && \
@@ -46,6 +48,7 @@ RUN echo "#!/usr/bin/env bash" > /opt/entrypoint.sh && \
     echo "java -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -Xms\$JAVA_XMS -Xmx\$JAVA_XMX \
         -Dserver.port=\$PORT \
         -Dmanagement.server.port=\$PORT \
+        -Dspring.boot.admin.client.url=\$MONITORING_URL \
         -Dspring.data.redis.host=\$REDIS_HOST \
         -Dspring.data.redis.port=\$REDIS_PORT \
         -Decomm.bff.tracing.url=\$TRACING_URL \
