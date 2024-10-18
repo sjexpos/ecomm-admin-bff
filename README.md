@@ -7,6 +7,9 @@
 [![Issues](https://img.shields.io/github/issues-search/sjexpos/ecomm-admin-bff?query=is%3Aopen&label=issues&style=plastic)](https://github.com/sjexpos/ecomm-admin-bff/issues)
 [![Commits](https://img.shields.io/github/last-commit/sjexpos/ecomm-admin-bff?logo=github&style=plastic)](https://github.com/sjexpos/ecomm-admin-bff/commits/)
 
+[![Docker pulls](https://img.shields.io/docker/pulls/sjexposecomm/admin-bff?logo=docker&style=plastic)](https://hub.docker.com/r/sjexposecomm/admin-bff)
+[![Docker size](https://img.shields.io/docker/image-size/sjexposecomm/admin-bff?logo=docker&style=plastic)](https://hub.docker.com/r/sjexposecomm/admin-bff/tags)
+
 ![](docs/images/arch-admin-bff.png)
 
 This microservice is responsible for ...

@@ -121,8 +121,7 @@ jobs:
           context: ./
           file: Dockerfile
           platforms: linux/amd64
-          push: false
-          tags: sjexpos/ecomm-admin-bff:latest
+          push: true
+          tags: sjexposecomm/admin-bff:latest
 
 # mvn jacoco:prepare-agent jacoco:report surefire:test
-

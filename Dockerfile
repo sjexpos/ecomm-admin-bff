@@ -11,18 +11,6 @@ FROM amazoncorretto:21-al2-jdk
 # ENV PRODUCTS_SERVICE_BASEURI
 # ENV ORDERS_SERVICE_BASEURI
 
-ARG UID=10001
-RUN adduser \
-    --disabled-password \
-    --gecos "" \
-    --home "/nonexistent" \
-    --shell "/sbin/nologin" \
-    --no-create-home \
-    --uid "${UID}" \
-    appuser
-
-USER appuser
-
 ADD target/*.jar /opt/admin-bff.jar
 
 RUN bash -c 'touch /opt/orders-service.jar'
