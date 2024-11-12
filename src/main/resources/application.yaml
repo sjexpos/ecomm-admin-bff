@@ -66,6 +66,17 @@ management:
     enabled: true
     sampling:
       probability: 1.0
+  otlp:
+    tracing:
+      endpoint: http://localhost:4318/v1/traces
+      timeout: 1s
+      compression: GZIP
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http:
+          server:
+            requests: true
 
 springdoc:
   show-actuator: false
@@ -149,6 +160,3 @@ ecomm:
       baseUri: http://localhost:6062
     orders:
       baseUri: http://localhost:6063
-    tracing:
-      url: http://localhost:4318/v1/traces
-

@@ -36,10 +36,10 @@ RUN echo "#!/usr/bin/env bash" > /opt/entrypoint.sh && \
     echo "java -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -Xms\$JAVA_XMS -Xmx\$JAVA_XMX \
         -Dserver.port=\$PORT \
         -Dmanagement.server.port=\$PORT \
+        -Dmanagement.otlp.tracing.endpoint=\$TRACING_URL \
         -Dspring.boot.admin.client.url=\$MONITORING_URL \
         -Dspring.data.redis.host=\$REDIS_HOST \
         -Dspring.data.redis.port=\$REDIS_PORT \
-        -Decomm.bff.tracing.url=\$TRACING_URL \
         -Decomm.bff.users.baseUri=\$USERS_SERVICE_BASEURI \
         -Decomm.bff.products.baseUri=\$PRODUCTS_SERVICE_BASEURI \
         -Decomm.bff.orders.baseUri=\$ORDERS_SERVICE_BASEURI \
