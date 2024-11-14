@@ -1,8 +1,11 @@
 FROM amazoncorretto:21-al2-jdk
+LABEL AUTHOR = 'Sergio Exposito'
+LABEL EMAIL = 'sjexpos@gmail.com'
 
 # ENV JAVA_XMS             <set initial Java heap size>
 # ENV JAVA_XMX             <set maximum Java heap size>
 # ENV PORT                 <port to run server>
+# ENV MANAGEMENT_PORT
 # ENV MONITORING_URL
 # ENV REDIS_HOST           <redis server host name>
 # ENV REDIS_PORT           <redis server port>
@@ -24,6 +27,7 @@ RUN echo "#!/usr/bin/env bash" > /opt/entrypoint.sh && \
     echo "echo \"JAVA_XMX: \$JAVA_XMX \" " >> /opt/entrypoint.sh && \
     echo "echo \"===============================================\" " >> /opt/entrypoint.sh && \
     echo "echo \"PORT: \$PORT \" " >> /opt/entrypoint.sh && \
+    echo "echo \"MANAGEMENT_PORT: \$MANAGEMENT_PORT \" " >> /opt/entrypoint.sh && \
     echo "echo \"MONITORING_URL: \$MONITORING_URL\" " >> /opt/entrypoint.sh && \
     echo "echo \"REDIS_HOST: \$REDIS_HOST \" " >> /opt/entrypoint.sh && \
     echo "echo \"REDIS_PORT: \$REDIS_PORT \" " >> /opt/entrypoint.sh && \
@@ -35,7 +39,7 @@ RUN echo "#!/usr/bin/env bash" > /opt/entrypoint.sh && \
     echo "" >> /opt/entrypoint.sh && \
     echo "java -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -Xms\$JAVA_XMS -Xmx\$JAVA_XMX \
         -Dserver.port=\$PORT \
-        -Dmanagement.server.port=\$PORT \
+        -Dmanagement.server.port=\$MANAGEMENT_PORT \
         -Dmanagement.otlp.tracing.endpoint=\$TRACING_URL \
         -Dspring.boot.admin.client.url=\$MONITORING_URL \
         -Dspring.data.redis.host=\$REDIS_HOST \
