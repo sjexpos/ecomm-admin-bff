@@ -34,6 +34,10 @@
 
     <spring-boot.version>3.3.2</spring-boot.version>
     <spring-cloud.version>2023.0.3</spring-cloud.version>
+    <opentelemetry-bom.version>1.40.0</opentelemetry-bom.version>
+    <opentelemetry-instrumentation-bom.version>2.6.0</opentelemetry-instrumentation-bom.version>
+    <opentelemetry.exporter.prometheus.version>1.40.0-alpha</opentelemetry.exporter.prometheus.version>
+    <opentelemetry.logback.version>2.6.0-alpha</opentelemetry.logback.version>
     <springdoc.version>2.6.0</springdoc.version>
     <swagger-annotations.version>2.2.22</swagger-annotations.version>
     <slf4j.api.version>2.0.9</slf4j.api.version>
@@ -84,6 +88,21 @@
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-dependencies</artifactId>
         <version>${spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>io.opentelemetry</groupId>
+        <artifactId>opentelemetry-bom</artifactId>
+        <version>${opentelemetry-bom.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.opentelemetry.instrumentation</groupId>
+        <artifactId>opentelemetry-instrumentation-bom</artifactId>
+        <version>${opentelemetry-instrumentation-bom.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -188,18 +207,30 @@
 
     <!-- Distributed tracing -->
     <dependency>
-      <groupId>io.micrometer</groupId>
-      <artifactId>micrometer-tracing-bridge-otel</artifactId>
+      <groupId>io.opentelemetry.instrumentation</groupId>
+      <artifactId>opentelemetry-spring-boot-starter</artifactId>
     </dependency>
     <dependency>
       <groupId>io.opentelemetry</groupId>
-      <artifactId>opentelemetry-exporter-otlp</artifactId>
+      <artifactId>opentelemetry-api</artifactId>
     </dependency>
-
-    <!-- Prometheus -->
     <dependency>
-      <groupId>io.micrometer</groupId>
-      <artifactId>micrometer-registry-prometheus</artifactId>
+      <groupId>io.opentelemetry</groupId>
+      <artifactId>opentelemetry-sdk</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.opentelemetry</groupId>
+      <artifactId>opentelemetry-sdk-metrics</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.opentelemetry</groupId>
+      <artifactId>opentelemetry-exporter-prometheus</artifactId>
+      <version>${opentelemetry.exporter.prometheus.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.opentelemetry.instrumentation</groupId>
+      <artifactId>opentelemetry-logback-mdc-1.0</artifactId>
+      <version>${opentelemetry.logback.version}</version>
     </dependency>
 
     <!-- Backend services dependencies -->

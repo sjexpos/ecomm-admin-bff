@@ -23,6 +23,17 @@ This microservice is responsible for ...
 * [Hibernate 6.6](https://hibernate.org/orm/)
 * [Hibernate Search 7.2.0](https://hibernate.org/search/)
 
+## Observability
+
+This project implements observability using OpenTelemetry Spring Boot starter
+* traces: they are exported by the Spring Boot starter using [OpenTelemetry](https://opentelemetry.io) protocol (otlp on grpc). The receiver of the information is [Jaeger](https://www.jaegertracing.io/). In kubernetes, jaeger collector is used.
+* metrics: they are exposed by the Spring Boot starter in a new port and endpoint to be scrapped by prometheus.
+* logs: they are sent to console. In kubernetes, Loki pulls logs from pods.
+
+![](docs/images/observability-spring-starter.png)
+
+OpenTelemetry collector receives oltp data and sends them to different exporters according to their type (metrics, traces, logs). Metrics are exposed to be pulled by prometheus. Traces are sent to Jaeger. And logs are sent to Loki.
+
 ## Requirements
 
 * [Java 21](https://openjdk.org/install/)

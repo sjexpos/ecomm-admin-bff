@@ -66,17 +66,87 @@ management:
     enabled: true
     sampling:
       probability: 1.0
-  otlp:
-    tracing:
-      endpoint: http://localhost:4318/v1/traces
-      timeout: 1s
-      compression: GZIP
+#  otlp:
+#    tracing:
+#      endpoint: http://localhost:4318/v1/traces
+#      timeout: 1s
+#      compression: GZIP
+#  metrics:
+#    distribution:
+#      percentiles-histogram:
+#        http:
+#          server:
+#            requests: true
+
+otel:
+  service:
+    name: ${spring.application.name}
+  propagators: tracecontext, baggage
   metrics:
-    distribution:
-      percentiles-histogram:
-        http:
-          server:
-            requests: true
+    exporter: prometheus
+  metric:
+    export:
+      interval: 3000
+  traces:
+    exporter: otlp
+  logs:
+    exporter: none
+  exporter:
+    prometheus:
+      host: 0.0.0.0
+      port: 9465
+    otlp:
+      traces:
+        protocol: http/protobuf
+        endpoint: http://localhost:4318/v1/traces
+        timeout: 1500
+#  instrumentation:
+#    common:
+#      default-enabled: false
+#  opentelemetry-api:
+#    enabled: true
+#  opentelemetry-instrumentation-annotations:
+#    enabled: true
+#  methods:
+#    enabled: true
+#  external-annotations:
+#    enabled: true
+#  apache-httpclient:
+#    enabled: true
+#  apache-httpasyncclient:
+#    enabled: true
+#  async-http-client:
+#    enabled: true
+#  tomcat:
+#    enabled: true
+#  java-http-client:
+#    enabled: true
+#  http-url-connection:
+#    enabled: true
+#  runtime-telemetry:
+#    enabled: true
+#  servlet:
+#    enabled: true
+#  micrometer:
+#    enabled: true
+#  redisson:
+#    enabled: true
+#  spring-web:
+#    enabled: true
+#  spring-webmvc:
+#    enabled: true
+#  spring-webflux:
+#    enabled: true
+#  logback-appender:
+#    enabled: true
+#  common:
+#    experimental:
+#      controller-telemetry:
+#        enabled: true
+#      view-telemetry:
+#        enabled: true
+#  experimental:
+#    span-suppression-strategy: semconv
 
 springdoc:
   show-actuator: false
@@ -140,10 +210,7 @@ resilience4j:
       remote-get-page:
         baseConfig: default
 
-
 logging:
-  pattern:
-    console: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%-5p) [${spring.application.name}] [%clr(%15.15t){faint}] [%clr(%32X{traceId}-%16X{spanId}){blue}] %clr(%40.40logger{5.10}:%-4L){cyan} : %m %n'
   level:
     io.oigres.ecomm.bff.admin: INFO
 
