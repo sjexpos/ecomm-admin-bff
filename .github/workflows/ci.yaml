@@ -11,5 +11,5 @@ jobs:
     with:
       sonar_project_key: admin-bff
       sonar_project_name: Admin backend for frontend
-      docker_image_name: sjexposecomm/admin-bff
+      docker_images: "['sjexposecomm/admin-bff']"
 
