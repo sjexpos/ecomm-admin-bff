@@ -18,17 +18,13 @@
 package io.oigres.ecomm.bff.admin.api.model;
 
 import java.io.Serializable;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
-@Builder
 @Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class ProfileResponse implements Serializable {
   private Long profileId;
   private String profileType;
-
-  public ProfileResponse(Long profileId, String profileType) {
-    this.profileId = profileId;
-    this.profileType = profileType;
-  }
 }

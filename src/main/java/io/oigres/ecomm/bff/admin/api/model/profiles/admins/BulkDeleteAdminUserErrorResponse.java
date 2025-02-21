@@ -17,11 +17,13 @@
 
 package io.oigres.ecomm.bff.admin.api.model.profiles.admins;
 
-import lombok.Builder;
-import lombok.Data;
+import java.io.Serializable;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-public class BulkDeleteAdminUserErrorResponse {
+public class BulkDeleteAdminUserErrorResponse implements Serializable {
   private Long id;
 }

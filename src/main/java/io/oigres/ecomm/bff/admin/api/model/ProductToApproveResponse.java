@@ -19,9 +19,12 @@ package io.oigres.ecomm.bff.admin.api.model;
 
 import java.io.Serializable;
 import java.util.List;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class ProductToApproveResponse implements Serializable {
   private Integer id;
   private String ucpc;
@@ -30,8 +33,12 @@ public class ProductToApproveResponse implements Serializable {
   private String brandName;
   private String categoryName;
   private String subCategoryName;
-  private List<String> flavors;
+  @Singular private List<String> flavors;
   private String quantity;
   private String description;
   private String status;
+
+  public List<String> getFlavors() {
+    return List.copyOf(flavors);
+  }
 }

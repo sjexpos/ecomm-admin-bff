@@ -22,11 +22,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import java.io.Serializable;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-@Data
 public class UpdateCannaUserApiRequest implements Serializable {
   @Schema(name = "password", required = false)
   private String password;

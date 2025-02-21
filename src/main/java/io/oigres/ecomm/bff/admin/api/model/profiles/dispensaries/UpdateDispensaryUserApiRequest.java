@@ -25,11 +25,12 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-@Data
 public class UpdateDispensaryUserApiRequest implements Serializable {
   @Schema(name = "name", example = "", required = true)
   @NotEmpty
@@ -75,12 +76,22 @@ public class UpdateDispensaryUserApiRequest implements Serializable {
   private String phone;
 
   @Schema(name = "images", example = "", required = false)
+  @Singular
   private List<ResourceRequest> images;
 
   @Schema(name = "videos", example = "", required = false)
+  @Singular
   private List<ResourceRequest> videos;
 
   @Schema(name = "userId", example = "", required = true)
   @NotEmpty(message = "userId must not be empty")
   private Long userId;
+
+  public List<ResourceRequest> getImages() {
+    return List.copyOf(images);
+  }
+
+  public List<ResourceRequest> getVideos() {
+    return List.copyOf(videos);
+  }
 }

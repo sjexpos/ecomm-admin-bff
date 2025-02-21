@@ -19,11 +19,12 @@ package io.oigres.ecomm.bff.admin.api.model.profiles.dispensaries;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-@Data
 public class GetAllDispensariesApiResponse implements Serializable {
   @Schema(name = "id", example = "1")
   private Long id;

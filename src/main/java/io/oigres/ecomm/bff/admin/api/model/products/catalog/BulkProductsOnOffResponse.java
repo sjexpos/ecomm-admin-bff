@@ -20,20 +20,28 @@ package io.oigres.ecomm.bff.admin.api.model.products.catalog;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import io.oigres.ecomm.bff.admin.api.model.products.BulkCPErrorResponse;
-import java.util.ArrayList;
 import java.util.List;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
 @JsonInclude(Include.NON_EMPTY)
 public class BulkProductsOnOffResponse {
-  @Builder.Default private List<ProductIdWithPublicationIdListDto> activated = new ArrayList<>();
-  @Builder.Default private List<ProductIdWithPublicationIdListDto> deactivated = new ArrayList<>();
-  @Builder.Default private List<BulkCPErrorResponse> errors = new ArrayList<>();
+  @Singular private List<ProductIdWithPublicationIdListDto> activatedProductIds;
+  @Singular private List<ProductIdWithPublicationIdListDto> deactivatedProductIds;
+  @Singular private List<BulkCPErrorResponse> errors;
+
+  public List<ProductIdWithPublicationIdListDto> getActivatedProductIds() {
+    return List.copyOf(activatedProductIds);
+  }
+
+  public List<ProductIdWithPublicationIdListDto> getDeactivatedProductIds() {
+    return List.copyOf(deactivatedProductIds);
+  }
+
+  public List<BulkCPErrorResponse> getErrors() {
+    return List.copyOf(errors);
+  }
 }

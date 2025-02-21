@@ -25,9 +25,12 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class CreateDispensaryUserApiRequest implements Serializable {
   @Schema(name = "name", example = "", required = true)
   @NotEmpty
@@ -74,11 +77,21 @@ public class CreateDispensaryUserApiRequest implements Serializable {
   private String phone;
 
   @Schema(name = "images", example = "", required = false)
+  @Singular
   private List<ResourceRequest> images;
 
   @Schema(name = "videos", example = "", required = false)
+  @Singular
   private List<ResourceRequest> videos;
 
   @Schema(name = "isActive", example = "", required = false, type = "boolean")
   private Boolean isActive;
+
+  public List<ResourceRequest> getVideos() {
+    return List.copyOf(videos);
+  }
+
+  public List<ResourceRequest> getImages() {
+    return List.copyOf(images);
+  }
 }

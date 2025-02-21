@@ -38,7 +38,10 @@ public class ListCategoriesUseCase implements UseCase {
         categoryService.getAllCategories(PageableRequestImpl.of(pageNumber, pageSize));
     List<CategoryResponse> categories =
         pages.getContent().stream()
-            .map(el -> new CategoryResponse(el.getId(), el.getName()))
+            .map(
+                el ->
+                    (CategoryResponse)
+                        CategoryResponse.builder().id(el.getId()).name(el.getName()).build())
             .toList();
     return new PaginatedResponse<>(
         categories, pages.getTotalPages(), pageNumber, pageSize, pages.getTotalElements());

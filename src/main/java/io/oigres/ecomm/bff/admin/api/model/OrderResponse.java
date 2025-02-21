@@ -19,10 +19,11 @@ package io.oigres.ecomm.bff.admin.api.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
 public class OrderResponse implements Serializable {
   private Long id;

@@ -19,9 +19,11 @@ package io.oigres.ecomm.bff.admin.api.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
-import lombok.Data;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
-@Data
+@Getter
+@SuperBuilder
 public class ResourceResponse implements Serializable {
   @Schema(name = "id", example = "1")
   private Integer id;

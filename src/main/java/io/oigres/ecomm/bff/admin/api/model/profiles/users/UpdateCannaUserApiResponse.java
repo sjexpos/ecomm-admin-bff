@@ -18,15 +18,12 @@
 package io.oigres.ecomm.bff.admin.api.model.profiles.users;
 
 import io.oigres.ecomm.bff.admin.api.model.enums.UserTypeApi;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
 public class UpdateCannaUserApiResponse {
   private Long id;
   private Boolean isActive;

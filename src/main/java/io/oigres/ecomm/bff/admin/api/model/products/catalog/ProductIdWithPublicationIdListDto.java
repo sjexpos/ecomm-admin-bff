@@ -20,17 +20,18 @@ package io.oigres.ecomm.bff.admin.api.model.products.catalog;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.util.List;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
 @JsonInclude(Include.NON_NULL)
 public class ProductIdWithPublicationIdListDto {
   private Long id;
-  private List<Long> publicationIds;
+  @Singular private List<Long> publicationIds;
+
+  public List<Long> getPublicationIds() {
+    return List.copyOf(publicationIds);
+  }
 }

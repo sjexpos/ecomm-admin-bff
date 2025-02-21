@@ -19,14 +19,25 @@ package io.oigres.ecomm.bff.admin.api.model;
 
 import java.io.Serializable;
 import java.util.List;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class DashboardResponse implements Serializable {
   private DashboardStatusResponse status;
   private DashboardNewUsersResponse newUsers;
-  private List<DashboardContentResponse> lastAddedContent;
+  @Singular private List<DashboardContentResponse> lastAddedContents;
   private DashboardAppDownloadsResponse googlePlay;
   private DashboardAppDownloadsResponse appStore;
-  private List<DashboardSocialMediaResponse> socialMediaFeed;
+  @Singular private List<DashboardSocialMediaResponse> socialMediaFeeds;
+
+  public List<DashboardContentResponse> getLastAddedContent() {
+    return List.copyOf(lastAddedContents);
+  }
+
+  public List<DashboardSocialMediaResponse> getSocialMediaFeed() {
+    return List.copyOf(socialMediaFeeds);
+  }
 }

@@ -20,10 +20,11 @@ package io.oigres.ecomm.bff.admin.api.model.products.strains;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.util.Set;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
 public class GetAllStrainApiResponse implements Serializable {
   @Schema(name = "id", example = "1")
@@ -64,7 +65,22 @@ public class GetAllStrainApiResponse implements Serializable {
   @Schema(name = "isActive", example = "true")
   private Boolean isActive;
 
-  private Set<String> terpenes;
+  @Singular private Set<String> terpenes;
+
+  @Singular("helpsWith")
   private Set<String> helpsWith;
-  private Set<String> images;
+
+  @Singular private Set<String> images;
+
+  public Set<String> getTerpenes() {
+    return Set.copyOf(terpenes);
+  }
+
+  public Set<String> getHelpsWith() {
+    return Set.copyOf(helpsWith);
+  }
+
+  public Set<String> getImages() {
+    return Set.copyOf(images);
+  }
 }

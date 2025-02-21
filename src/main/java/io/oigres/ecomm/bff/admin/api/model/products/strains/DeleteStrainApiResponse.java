@@ -18,9 +18,12 @@
 package io.oigres.ecomm.bff.admin.api.model.products.strains;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class DeleteStrainApiResponse {
   @Schema(name = "id", example = "1")
   private Long id;

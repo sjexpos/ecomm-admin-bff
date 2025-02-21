@@ -29,6 +29,7 @@ import io.oigres.ecomm.service.products.model.PageableRequestImpl;
 import io.oigres.ecomm.service.products.model.dispensary.GetAllDispensaryResponse;
 import java.io.*;
 import java.math.BigDecimal;
+import java.nio.file.Files;
 import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
@@ -83,7 +84,7 @@ public class GetOrdersUseCaseTest {
     File file =
         ResourceUtils.getFile(
             "classpath:io/oigres/ecomm/bff/admin/usecases/orders/list/" + filename);
-    InputStream in = new FileInputStream(file);
+    InputStream in = Files.newInputStream(file.toPath());
     BufferedReader reader = new BufferedReader(new InputStreamReader(in));
     return reader.lines().collect(Collectors.joining(System.lineSeparator()));
   }
@@ -126,17 +127,18 @@ public class GetOrdersUseCaseTest {
     Assertions.assertEquals(new BigDecimal("63.25"), response.getTotal());
     Assertions.assertEquals(1, response.getOrders().getRows().size());
     Assertions.assertEquals(
-        1234, response.getOrders().getRows().stream().findFirst().get().getId());
+        1234, response.getOrders().getRows().stream().findFirst().orElseThrow().getId());
     Assertions.assertEquals(
-        1234, response.getOrders().getRows().stream().findFirst().get().getOrderNumber());
+        1234, response.getOrders().getRows().stream().findFirst().orElseThrow().getOrderNumber());
     Assertions.assertEquals(
-        "My dispensary", response.getOrders().getRows().stream().findFirst().get().getDispensary());
+        "My dispensary",
+        response.getOrders().getRows().stream().findFirst().orElseThrow().getDispensary());
     Assertions.assertEquals(
         OrderStatusEnum.ORDERED,
-        response.getOrders().getRows().stream().findFirst().get().getStatus());
+        response.getOrders().getRows().stream().findFirst().orElseThrow().getStatus());
     Assertions.assertEquals(
         new BigDecimal("63.25"),
-        response.getOrders().getRows().stream().findFirst().get().getTotal());
+        response.getOrders().getRows().stream().findFirst().orElseThrow().getTotal());
   }
 
   @Test
@@ -172,17 +174,18 @@ public class GetOrdersUseCaseTest {
     Assertions.assertEquals(new BigDecimal("63.25"), response.getTotal());
     Assertions.assertEquals(1, response.getOrders().getRows().size());
     Assertions.assertEquals(
-        1234, response.getOrders().getRows().stream().findFirst().get().getId());
+        1234, response.getOrders().getRows().stream().findFirst().orElseThrow().getId());
     Assertions.assertEquals(
-        1234, response.getOrders().getRows().stream().findFirst().get().getOrderNumber());
+        1234, response.getOrders().getRows().stream().findFirst().orElseThrow().getOrderNumber());
     Assertions.assertEquals(
-        "Not available", response.getOrders().getRows().stream().findFirst().get().getDispensary());
+        "Not available",
+        response.getOrders().getRows().stream().findFirst().orElseThrow().getDispensary());
     Assertions.assertEquals(
         OrderStatusEnum.ORDERED,
-        response.getOrders().getRows().stream().findFirst().get().getStatus());
+        response.getOrders().getRows().stream().findFirst().orElseThrow().getStatus());
     Assertions.assertEquals(
         new BigDecimal("63.25"),
-        response.getOrders().getRows().stream().findFirst().get().getTotal());
+        response.getOrders().getRows().stream().findFirst().orElseThrow().getTotal());
 
     PRODUCTS_SERVICE.verify(
         1,
@@ -229,17 +232,18 @@ public class GetOrdersUseCaseTest {
     Assertions.assertEquals(new BigDecimal("63.25"), response.getTotal());
     Assertions.assertEquals(1, response.getOrders().getRows().size());
     Assertions.assertEquals(
-        1234, response.getOrders().getRows().stream().findFirst().get().getId());
+        1234, response.getOrders().getRows().stream().findFirst().orElseThrow().getId());
     Assertions.assertEquals(
-        1234, response.getOrders().getRows().stream().findFirst().get().getOrderNumber());
+        1234, response.getOrders().getRows().stream().findFirst().orElseThrow().getOrderNumber());
     Assertions.assertEquals(
-        "Not available", response.getOrders().getRows().stream().findFirst().get().getDispensary());
+        "Not available",
+        response.getOrders().getRows().stream().findFirst().orElseThrow().getDispensary());
     Assertions.assertEquals(
         OrderStatusEnum.ORDERED,
-        response.getOrders().getRows().stream().findFirst().get().getStatus());
+        response.getOrders().getRows().stream().findFirst().orElseThrow().getStatus());
     Assertions.assertEquals(
         new BigDecimal("63.25"),
-        response.getOrders().getRows().stream().findFirst().get().getTotal());
+        response.getOrders().getRows().stream().findFirst().orElseThrow().getTotal());
 
     PRODUCTS_SERVICE.verify(
         1,

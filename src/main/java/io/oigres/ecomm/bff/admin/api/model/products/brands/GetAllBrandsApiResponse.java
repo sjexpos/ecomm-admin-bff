@@ -20,10 +20,11 @@ package io.oigres.ecomm.bff.admin.api.model.products.brands;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.util.List;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
 public class GetAllBrandsApiResponse implements Serializable {
   @Schema(name = "id", example = "1")
@@ -78,14 +79,34 @@ public class GetAllBrandsApiResponse implements Serializable {
   private String ucpc;
 
   @Schema(name = "categoriesIds", example = " ")
+  @Singular
   private List<Integer> categoriesIds;
 
   @Schema(name = "featuresProductsIds", example = " ")
+  @Singular
   private List<Integer> featuresProductsIds;
 
   @Schema(name = "images", example = " ")
+  @Singular
   private List<String> images;
 
   @Schema(name = "videos", example = " ")
+  @Singular
   private List<String> videos;
+
+  public List<Integer> getCategoriesIds() {
+    return List.copyOf(categoriesIds);
+  }
+
+  public List<String> getVideos() {
+    return List.copyOf(videos);
+  }
+
+  public List<String> getImages() {
+    return List.copyOf(images);
+  }
+
+  public List<Integer> getFeaturesProductsIds() {
+    return List.copyOf(featuresProductsIds);
+  }
 }

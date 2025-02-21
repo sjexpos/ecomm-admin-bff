@@ -21,11 +21,12 @@ import io.oigres.ecomm.bff.admin.api.model.ResourceRequest;
 import io.oigres.ecomm.bff.admin.api.model.SocialMediaRequest;
 import java.io.Serializable;
 import java.util.List;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-@Data
 public class CreateDispensaryUserApiResponse implements Serializable {
   private Long id;
   private String name;
@@ -37,8 +38,16 @@ public class CreateDispensaryUserApiResponse implements Serializable {
   private String licenseStatus;
   private SocialMediaRequest socialMedia;
   private String phone;
-  private List<ResourceRequest> images;
-  private List<ResourceRequest> videos;
+  @Singular private List<ResourceRequest> images;
+  @Singular private List<ResourceRequest> videos;
   private Boolean isActive;
   private Long userId;
+
+  public List<ResourceRequest> getImages() {
+    return List.copyOf(images);
+  }
+
+  public List<ResourceRequest> getVideos() {
+    return List.copyOf(videos);
+  }
 }

@@ -22,9 +22,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 public class TimeConverter {
-  private TimeConverter() {
-    throw new AssertionError();
-  }
+  private TimeConverter() {}
 
   public static long localDateTimeIntoEpoch(LocalDateTime time) {
     Instant instant = time.atZone(ZoneId.systemDefault()).toInstant();

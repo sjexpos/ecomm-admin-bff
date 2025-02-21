@@ -20,17 +20,19 @@ package io.oigres.ecomm.bff.admin.api.model;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotEmpty;
 import java.util.List;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
 public class BulkDeleteStrainsRequest {
   @Schema(name = "ids", example = "[1,2,3,4,5]")
   @NotEmpty(message = "at least 1 strain must be sent")
+  @Singular
   private List<Long> ids;
+
+  public @NotEmpty(message = "at least 1 strain must be sent") List<Long> getIds() {
+    return List.copyOf(ids);
+  }
 }

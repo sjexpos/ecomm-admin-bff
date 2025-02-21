@@ -23,9 +23,12 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import java.util.List;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class InsertBrandApiRequest {
   @Schema(name = "name", example = "Left Coast Extracts", required = true)
   @NotNull(message = "name must not be null") @NotEmpty(message = "name must not be empty")
@@ -91,14 +94,34 @@ public class InsertBrandApiRequest {
   private String ucpc;
 
   @Schema(name = "categoriesIds", example = "[1,2]")
+  @Singular
   private List<Integer> categoriesIds;
 
   @Schema(name = "featuresProductsIds", example = "[1,2]")
+  @Singular
   private List<Integer> featuresProductsIds;
 
   @Schema(name = "images", example = "[1,2]")
+  @Singular
   private List<String> images;
 
   @Schema(name = "videos", example = "[1,2]")
+  @Singular
   private List<String> videos;
+
+  public List<Integer> getCategoriesIds() {
+    return List.copyOf(categoriesIds);
+  }
+
+  public List<Integer> getFeaturesProductsIds() {
+    return List.copyOf(featuresProductsIds);
+  }
+
+  public List<String> getImages() {
+    return List.copyOf(images);
+  }
+
+  public List<String> getVideos() {
+    return List.copyOf(videos);
+  }
 }

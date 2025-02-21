@@ -20,11 +20,12 @@ package io.oigres.ecomm.bff.admin.api.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
-@Data
-@AllArgsConstructor
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class CatalogProductByIdResponse implements Serializable {
   private Long id;
   private String name;
@@ -40,8 +41,16 @@ public class CatalogProductByIdResponse implements Serializable {
   private Integer contentValue;
   private Long contentUnit;
   private String description;
-  private List<ResourceResponse> images;
-  private List<ResourceResponse> videos;
+  @Singular private List<ResourceResponse> images;
+  @Singular private List<ResourceResponse> videos;
   private Boolean isCatalogProduct;
   private Boolean isActive;
+
+  public List<ResourceResponse> getImages() {
+    return List.copyOf(images);
+  }
+
+  public List<ResourceResponse> getVideos() {
+    return List.copyOf(videos);
+  }
 }

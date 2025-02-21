@@ -18,13 +18,11 @@
 package io.oigres.ecomm.bff.admin.api.model;
 
 import java.io.Serializable;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
+@SuperBuilder
 public class CategoryResponse implements Serializable {
   private Long id;
   private String name;

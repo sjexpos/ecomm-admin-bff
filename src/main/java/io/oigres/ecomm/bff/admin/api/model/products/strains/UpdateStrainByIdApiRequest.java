@@ -22,12 +22,14 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class UpdateStrainByIdApiRequest {
   @Schema(name = "name", example = "strain test name", required = true)
   @NotNull(message = "name must not be null") @NotEmpty(message = "name must not be empty")
@@ -72,16 +74,40 @@ public class UpdateStrainByIdApiRequest {
   private Boolean enabled;
 
   @Schema(name = "terpenesIds", example = "[1, 2]")
+  @Singular
   private Set<Integer> terpenesIds;
 
   @Schema(name = "helpsWithIds", example = "[1, 2]")
+  @Singular
   private Set<Integer> helpsWithIds;
 
   @Schema(name = "effectsIds", example = "[1, 2]")
+  @Singular
   private Set<Integer> effectsIds;
 
   @Schema(name = "flavorsIds", example = "[1, 2]")
+  @Singular
   private List<Integer> flavorsIds;
 
-  private List<String> images = new ArrayList<>();
+  @Singular private List<String> images;
+
+  public Set<Integer> getTerpenesIds() {
+    return Set.copyOf(terpenesIds);
+  }
+
+  public Set<Integer> getHelpsWithIds() {
+    return Set.copyOf(helpsWithIds);
+  }
+
+  public Set<Integer> getEffectsIds() {
+    return Set.copyOf(effectsIds);
+  }
+
+  public List<Integer> getFlavorsIds() {
+    return List.copyOf(flavorsIds);
+  }
+
+  public List<String> getImages() {
+    return List.copyOf(images);
+  }
 }

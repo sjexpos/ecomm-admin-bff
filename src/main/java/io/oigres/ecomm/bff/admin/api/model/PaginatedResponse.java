@@ -19,15 +19,25 @@ package io.oigres.ecomm.bff.admin.api.model;
 
 import java.io.Serializable;
 import java.util.Collection;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import java.util.List;
+import lombok.*;
 
-@Data
-@AllArgsConstructor
+@Getter
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class PaginatedResponse<T extends Serializable> implements Serializable {
   private Collection<T> rows;
   private int totalPages;
   private int page;
   private int size;
   private long totalItems;
+
+  public PaginatedResponse(
+      Collection<T> rows, int totalPages, int page, int size, long totalItems) {
+    this.rows = List.copyOf(rows);
+    this.totalPages = totalPages;
+    this.page = page;
+    this.size = size;
+    this.totalItems = totalItems;
+  }
 }

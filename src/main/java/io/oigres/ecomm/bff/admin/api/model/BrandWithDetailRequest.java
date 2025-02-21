@@ -19,17 +19,20 @@ package io.oigres.ecomm.bff.admin.api.model;
 
 import java.io.Serializable;
 import java.util.List;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class BrandWithDetailRequest implements Serializable {
   private Integer id;
   private String name;
   private String license;
   private String licenseStatus;
   private String address;
-  private List<Integer> productCategoriesIds;
-  private List<Integer> featuresProductsIds;
+  @Singular private List<Integer> productCategoriesIds;
+  @Singular private List<Integer> featuresProductsIds;
   private String description;
   private ResourceRequest logo;
   private String ucpc;
@@ -37,6 +40,22 @@ public class BrandWithDetailRequest implements Serializable {
   private String phone;
   private String email;
   private SocialMediaRequest socialMedia;
-  private List<ResourceRequest> images;
-  private List<ResourceRequest> videos;
+  @Singular private List<ResourceRequest> images;
+  @Singular private List<ResourceRequest> videos;
+
+  public List<Integer> getProductCategoriesIds() {
+    return List.copyOf(productCategoriesIds);
+  }
+
+  public List<Integer> getFeaturesProductsIds() {
+    return List.copyOf(featuresProductsIds);
+  }
+
+  public List<ResourceRequest> getImages() {
+    return List.copyOf(images);
+  }
+
+  public List<ResourceRequest> getVideos() {
+    return List.copyOf(videos);
+  }
 }

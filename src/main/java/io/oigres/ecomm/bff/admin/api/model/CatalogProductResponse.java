@@ -18,11 +18,12 @@
 package io.oigres.ecomm.bff.admin.api.model;
 
 import java.io.Serializable;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
-@Data
-@AllArgsConstructor
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class CatalogProductResponse implements Serializable {
   private Long id;
   private String image;

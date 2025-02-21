@@ -24,9 +24,12 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class DispensaryUserWithDetailRequest implements Serializable {
   private Long id;
   @NotNull @NotEmpty private String name;
@@ -39,7 +42,15 @@ public class DispensaryUserWithDetailRequest implements Serializable {
   @NotNull private Integer licenseStatus;
   @NotNull private SocialMediaRequest socialMedia;
   @NotNull @NotEmpty private String phone;
-  private List<ResourceRequest> images;
-  private List<ResourceRequest> videos;
+  @Singular private List<ResourceRequest> images;
+  @Singular private List<ResourceRequest> videos;
   private Boolean isActive;
+
+  public List<ResourceRequest> getImages() {
+    return List.copyOf(images);
+  }
+
+  public List<ResourceRequest> getVideos() {
+    return List.copyOf(videos);
+  }
 }

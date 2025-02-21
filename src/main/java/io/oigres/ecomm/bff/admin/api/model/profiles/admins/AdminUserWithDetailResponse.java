@@ -18,13 +18,12 @@
 package io.oigres.ecomm.bff.admin.api.model.profiles.admins;
 
 import java.io.Serializable;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-@Data
-@AllArgsConstructor
 public class AdminUserWithDetailResponse implements Serializable {
   private Long id;
   private String firstName;

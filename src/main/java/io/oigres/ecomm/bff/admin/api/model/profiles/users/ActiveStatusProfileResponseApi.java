@@ -17,9 +17,12 @@
 
 package io.oigres.ecomm.bff.admin.api.model.profiles.users;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class ActiveStatusProfileResponseApi {
   private Long id;
   private Boolean enabled;

@@ -24,10 +24,11 @@ import io.oigres.ecomm.bff.admin.api.model.conditions.GetConditionByIdApiRespons
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.math.BigDecimal;
 import java.util.Set;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
 public class GetStrainApiResponse {
   @Schema(name = "id", example = "1")
@@ -68,9 +69,32 @@ public class GetStrainApiResponse {
   @Schema(name = "isActive", example = "true")
   private Boolean isActive;
 
-  private Set<GetTerpeneByIdApiResponse> terpenes;
+  @Singular private Set<GetTerpeneByIdApiResponse> terpenes;
+
+  @Singular("helpsWith")
   private Set<GetConditionByIdApiResponse> helpsWith;
-  private Set<GetEffectByIdApiResponse> effects;
-  private Set<GetFlavorByIdApiResponse> flavors;
-  private Set<String> images;
+
+  @Singular private Set<GetEffectByIdApiResponse> effects;
+  @Singular private Set<GetFlavorByIdApiResponse> flavors;
+  @Singular private Set<String> images;
+
+  public Set<GetTerpeneByIdApiResponse> getTerpenes() {
+    return Set.copyOf(terpenes);
+  }
+
+  public Set<GetConditionByIdApiResponse> getHelpsWith() {
+    return Set.copyOf(helpsWith);
+  }
+
+  public Set<GetEffectByIdApiResponse> getEffects() {
+    return Set.copyOf(effects);
+  }
+
+  public Set<GetFlavorByIdApiResponse> getFlavors() {
+    return Set.copyOf(flavors);
+  }
+
+  public Set<String> getImages() {
+    return Set.copyOf(images);
+  }
 }

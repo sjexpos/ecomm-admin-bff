@@ -19,9 +19,16 @@ package io.oigres.ecomm.bff.admin.api.model;
 
 import java.io.Serializable;
 import java.util.List;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class OrderStatusAmountApiResponse implements Serializable {
-  private List<OrderStatusAmountDto> status;
+  @Singular private List<OrderStatusAmountDto> statuses;
+
+  public List<OrderStatusAmountDto> getStatuses() {
+    return List.copyOf(statuses);
+  }
 }

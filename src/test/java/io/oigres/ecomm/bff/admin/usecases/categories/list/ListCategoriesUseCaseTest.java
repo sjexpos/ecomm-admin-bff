@@ -26,6 +26,8 @@ import io.oigres.ecomm.bff.admin.api.model.CategoryResponse;
 import io.oigres.ecomm.bff.admin.api.model.PaginatedResponse;
 import io.oigres.ecomm.service.products.api.RemoteServiceUnavailableException;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lombok.extern.slf4j.Slf4j;
@@ -68,7 +70,7 @@ public class ListCategoriesUseCaseTest {
     File file =
         ResourceUtils.getFile(
             "classpath:io/oigres/ecomm/bff/admin/usecases/categories/list/" + filename);
-    InputStream in = new FileInputStream(file);
+    InputStream in = Files.newInputStream(Path.of(file.getPath()));
     BufferedReader reader = new BufferedReader(new InputStreamReader(in));
     return reader.lines().collect(Collectors.joining(System.lineSeparator()));
   }

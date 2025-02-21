@@ -18,12 +18,12 @@
 package io.oigres.ecomm.bff.admin.api.model.products.brands;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.util.ArrayList;
 import java.util.List;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
 public class InsertBrandApiResponse {
   @Schema(name = "id", example = "1")
@@ -77,19 +77,35 @@ public class InsertBrandApiResponse {
   @Schema(name = "ucpc")
   private String ucpc;
 
-  @Builder.Default
   @Schema(name = "categoriesIds")
-  private List<Integer> categoriesIds = new ArrayList<>();
+  @Singular
+  private List<Integer> categoriesIds;
 
-  @Builder.Default
   @Schema(name = "featuresProductsIds")
-  private List<Integer> featuresProductsIds = new ArrayList<>();
+  @Singular
+  private List<Integer> featuresProductsIds;
 
-  @Builder.Default
   @Schema(name = "images")
-  private List<Integer> images = new ArrayList<>();
+  @Singular
+  private List<Integer> images;
 
-  @Builder.Default
   @Schema(name = "videos")
-  private List<Integer> videos = new ArrayList<>();
+  @Singular
+  private List<Integer> videos;
+
+  public List<Integer> getCategoriesIds() {
+    return List.copyOf(categoriesIds);
+  }
+
+  public List<Integer> getFeaturesProductsIds() {
+    return List.copyOf(featuresProductsIds);
+  }
+
+  public List<Integer> getImages() {
+    return List.copyOf(images);
+  }
+
+  public List<Integer> getVideos() {
+    return List.copyOf(videos);
+  }
 }

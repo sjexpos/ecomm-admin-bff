@@ -18,9 +18,16 @@
 package io.oigres.ecomm.bff.admin.api.model.profiles.users;
 
 import java.util.List;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class ActiveCannaUserRequest {
-  private List<Integer> ids;
+  @Singular private List<Integer> ids;
+
+  public List<Integer> getIds() {
+    return List.copyOf(ids);
+  }
 }

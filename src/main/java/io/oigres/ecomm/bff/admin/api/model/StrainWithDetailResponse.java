@@ -19,13 +19,19 @@ package io.oigres.ecomm.bff.admin.api.model;
 
 import java.io.Serializable;
 import java.util.List;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class StrainWithDetailResponse implements Serializable {
   private Integer id;
   private String ucpc;
+
+  @Singular("img")
   private List<ResourceRequest> img;
+
   private String name;
   private Integer calmingLevel;
   private Integer typeId;
@@ -34,11 +40,35 @@ public class StrainWithDetailResponse implements Serializable {
   private Float cbd;
   private Float cbg;
   private Float thcv;
-  private List<Integer> terpenesIds;
-  private List<Integer> helpsWithIds;
-  private List<Integer> consumeTypesIds;
-  private List<Integer> effectsIds;
-  private List<Integer> flavorsIds;
+  @Singular private List<Integer> terpenesIds;
+  @Singular private List<Integer> helpsWithIds;
+  @Singular private List<Integer> consumeTypesIds;
+  @Singular private List<Integer> effectsIds;
+  @Singular private List<Integer> flavorsIds;
   private Boolean isPaused;
   private String description;
+
+  public List<ResourceRequest> getImg() {
+    return List.copyOf(img);
+  }
+
+  public List<Integer> getTerpenesIds() {
+    return List.copyOf(terpenesIds);
+  }
+
+  public List<Integer> getHelpsWithIds() {
+    return List.copyOf(helpsWithIds);
+  }
+
+  public List<Integer> getConsumeTypesIds() {
+    return List.copyOf(consumeTypesIds);
+  }
+
+  public List<Integer> getEffectsIds() {
+    return List.copyOf(effectsIds);
+  }
+
+  public List<Integer> getFlavorsIds() {
+    return List.copyOf(flavorsIds);
+  }
 }

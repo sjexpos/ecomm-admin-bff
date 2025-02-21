@@ -18,9 +18,11 @@
 package io.oigres.ecomm.bff.admin.api.model;
 
 import java.io.Serializable;
-import lombok.Data;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
-@Data
+@Getter
+@SuperBuilder
 public class BrandResponse implements Serializable {
   private Integer id;
   private String name;

@@ -17,9 +17,12 @@
 
 package io.oigres.ecomm.bff.admin.api.model;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class ChangeStrainStateByIdApiResponse {
   private Long id;
   private Boolean isActive;

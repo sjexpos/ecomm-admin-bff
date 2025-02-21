@@ -18,5 +18,9 @@
 package io.oigres.ecomm.bff.admin.api.model.products.strains;
 
 import io.oigres.ecomm.bff.admin.api.model.ResourceRequest;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
+@Getter
+@SuperBuilder
 public class StrainImageRequest extends ResourceRequest {}

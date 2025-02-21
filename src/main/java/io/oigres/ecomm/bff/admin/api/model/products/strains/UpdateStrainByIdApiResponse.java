@@ -19,11 +19,13 @@ package io.oigres.ecomm.bff.admin.api.model.products.strains;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class UpdateStrainByIdApiResponse {
   @Schema(name = "id", example = "1")
   private Long id;
@@ -64,16 +66,40 @@ public class UpdateStrainByIdApiResponse {
   private Boolean enabled;
 
   @Schema(name = "terpenesIds", example = "[1, 2]")
-  private List<Integer> terpenesIds = new ArrayList<>();
+  @Singular
+  private List<Integer> terpenesIds;
 
   @Schema(name = "helpsWithIds", example = "[1, 2]")
-  private List<Integer> helpsWithIds = new ArrayList<>();
+  @Singular
+  private List<Integer> helpsWithIds;
 
   @Schema(name = "effectsIds", example = "[1, 2]")
-  private List<Integer> effectsIds = new ArrayList<>();
+  @Singular
+  private List<Integer> effectsIds;
 
   @Schema(name = "flavorsIds", example = "[1, 2]")
-  private List<Integer> flavorsIds = new ArrayList<>();
+  @Singular
+  private List<Integer> flavorsIds;
 
-  private List<String> images = new ArrayList<>(); // Maybe should be Long for ids
+  @Singular private List<String> images; // Maybe should be Long for ids
+
+  public List<Integer> getTerpenesIds() {
+    return List.copyOf(terpenesIds);
+  }
+
+  public List<Integer> getHelpsWithIds() {
+    return List.copyOf(helpsWithIds);
+  }
+
+  public List<Integer> getEffectsIds() {
+    return List.copyOf(effectsIds);
+  }
+
+  public List<Integer> getFlavorsIds() {
+    return List.copyOf(flavorsIds);
+  }
+
+  public List<String> getImages() {
+    return List.copyOf(images);
+  }
 }

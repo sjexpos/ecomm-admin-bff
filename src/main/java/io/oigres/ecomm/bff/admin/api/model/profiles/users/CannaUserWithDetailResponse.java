@@ -18,9 +18,12 @@
 package io.oigres.ecomm.bff.admin.api.model.profiles.users;
 
 import java.io.Serializable;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class CannaUserWithDetailResponse implements Serializable {
   private Integer id;
   private String firstName;

@@ -18,15 +18,12 @@
 package io.oigres.ecomm.bff.admin.api.model.conditions;
 
 import java.io.Serializable;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
 public class GetAllConditionsApiResponse implements Serializable {
   private Long id;
   private String name;

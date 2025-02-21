@@ -17,12 +17,14 @@
 
 package io.oigres.ecomm.bff.admin.api.model.profiles.dispensaries;
 
-import lombok.Builder;
-import lombok.Data;
+import java.io.Serializable;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-public class BulkDeleteDispensaryUserErrorResponse {
+public class BulkDeleteDispensaryUserErrorResponse implements Serializable {
   private Long id;
   private String data;
 }

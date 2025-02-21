@@ -21,13 +21,16 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class ProductWithDetailRequest implements Serializable {
   private Integer id;
-  @NotNull private List<ResourceRequest> images;
-  @NotNull private List<ResourceRequest> videos;
+  @Singular @NotNull private List<ResourceRequest> images;
+  @Singular @NotNull private List<ResourceRequest> videos;
   @NotNull @NotEmpty private String name;
   @NotNull @NotEmpty private String ucpc;
   @NotNull private Integer categoryId;
@@ -41,4 +44,12 @@ public class ProductWithDetailRequest implements Serializable {
   @NotNull private Integer content;
   @NotNull private Integer contentUnitId;
   @NotNull @NotEmpty private String description;
+
+  public @NotNull List<ResourceRequest> getImages() {
+    return List.copyOf(images);
+  }
+
+  public @NotNull List<ResourceRequest> getVideos() {
+    return List.copyOf(videos);
+  }
 }

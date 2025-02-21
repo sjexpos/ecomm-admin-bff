@@ -23,9 +23,12 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class InsertStrainApiRequest {
   @Schema(name = "name", example = "strain test name", required = true)
   @NotNull(message = "name must not be null") @NotEmpty(message = "name must not be empty")
@@ -70,16 +73,40 @@ public class InsertStrainApiRequest {
   private Boolean enabled;
 
   @Schema(name = "terpenesIds", example = "[1, 2]")
+  @Singular
   private List<Integer> terpenesIds;
 
   @Schema(name = "helpsWithIds", example = "[1, 2]")
+  @Singular
   private List<Integer> helpsWithIds;
 
   @Schema(name = "effectsIds", example = "[1, 2]")
+  @Singular
   private List<Integer> effectsIds;
 
   @Schema(name = "flavorsIds", example = "[1, 2]")
+  @Singular
   private List<Integer> flavorsIds;
 
-  private List<String> images;
+  @Singular private List<String> images;
+
+  public List<Integer> getTerpenesIds() {
+    return List.copyOf(terpenesIds);
+  }
+
+  public List<Integer> getHelpsWithIds() {
+    return List.copyOf(helpsWithIds);
+  }
+
+  public List<Integer> getEffectsIds() {
+    return List.copyOf(effectsIds);
+  }
+
+  public List<Integer> getFlavorsIds() {
+    return List.copyOf(flavorsIds);
+  }
+
+  public List<String> getImages() {
+    return List.copyOf(images);
+  }
 }

@@ -21,9 +21,12 @@ import io.oigres.ecomm.bff.admin.api.model.ResourceRequest;
 import io.oigres.ecomm.bff.admin.api.model.SocialMediaRequest;
 import java.io.Serializable;
 import java.util.List;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class GrowerUserWithDetailResponse implements Serializable {
   private Integer id;
   private String name;
@@ -36,7 +39,15 @@ public class GrowerUserWithDetailResponse implements Serializable {
   private Boolean licenseStatus;
   private SocialMediaRequest socialMedia;
   private String phone;
-  private List<ResourceRequest> images;
-  private List<ResourceRequest> videos;
+  @Singular private List<ResourceRequest> images;
+  @Singular private List<ResourceRequest> videos;
   private Boolean isActive;
+
+  public List<ResourceRequest> getVideos() {
+    return List.copyOf(videos);
+  }
+
+  public List<ResourceRequest> getImages() {
+    return List.copyOf(images);
+  }
 }

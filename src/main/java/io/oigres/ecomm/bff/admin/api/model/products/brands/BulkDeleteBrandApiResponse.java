@@ -17,18 +17,24 @@
 
 package io.oigres.ecomm.bff.admin.api.model.products.brands;
 
-import java.util.ArrayList;
 import java.util.List;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
 public class BulkDeleteBrandApiResponse {
-  @Builder.Default private List<Long> deleted = new ArrayList<>();
-  @Builder.Default private List<BulkDeleteBrandErrorApiResponse> errors = new ArrayList<>();
+  @Singular("deleted")
+  private List<Long> deleted;
+
+  @Singular private List<BulkDeleteBrandErrorApiResponse> errors;
+
+  public List<Long> getDeleted() {
+    return List.copyOf(deleted);
+  }
+
+  public List<BulkDeleteBrandErrorApiResponse> getErrors() {
+    return List.copyOf(errors);
+  }
 }

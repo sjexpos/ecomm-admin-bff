@@ -20,13 +20,19 @@ package io.oigres.ecomm.bff.admin.api.model;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotEmpty;
 import java.util.List;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@NoArgsConstructor
-@Data
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class IdListGenericRequest {
   @Schema(name = "ids", example = "[1,2,3,4,5]")
   @NotEmpty(message = "at least one id id must be sent")
+  @Singular
   private List<Long> ids;
+
+  public @NotEmpty(message = "at least one id id must be sent") List<Long> getIds() {
+    return List.copyOf(ids);
+  }
 }

@@ -20,17 +20,18 @@ package io.oigres.ecomm.bff.admin.api.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
 public class OrderWithDetailResponse implements Serializable {
   private Long id;
   private Long orderNumber;
   private long orderDate;
-  private List<OrderItemResponse> items;
-  private List<OrderStatusResponse> statuses;
+  @Singular private List<OrderItemResponse> items;
+  @Singular private List<OrderStatusResponse> statuses;
   private String paymentMethod;
   private String deliveryMethod;
   private BigDecimal totalPriceProducts;
@@ -39,4 +40,12 @@ public class OrderWithDetailResponse implements Serializable {
   private BigDecimal totalPriceOrder;
   private OrderUserResponse user;
   private OrderDispensaryResponse dispensary;
+
+  public List<OrderItemResponse> getItems() {
+    return List.copyOf(items);
+  }
+
+  public List<OrderStatusResponse> getStatuses() {
+    return List.copyOf(statuses);
+  }
 }

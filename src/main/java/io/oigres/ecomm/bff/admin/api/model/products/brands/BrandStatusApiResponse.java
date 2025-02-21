@@ -18,9 +18,12 @@
 package io.oigres.ecomm.bff.admin.api.model.products.brands;
 
 import java.io.Serializable;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class BrandStatusApiResponse implements Serializable {
   private Long id;
   private Boolean enabled;

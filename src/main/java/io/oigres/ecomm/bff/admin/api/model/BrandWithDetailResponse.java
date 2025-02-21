@@ -18,17 +18,17 @@
 package io.oigres.ecomm.bff.admin.api.model;
 
 import java.util.List;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
+@Getter
+@SuperBuilder
 public class BrandWithDetailResponse extends BrandResponse {
   private String license;
   private String licenseStatus;
   private String address;
-  private List<Integer> productCategoriesIds;
-  private List<Integer> featuredProductsIds;
+  @Singular private List<Integer> productCategoriesIds;
+  @Singular private List<Integer> featuredProductsIds;
   private String description;
   private ResourceResponse logo;
   private String ucpc;
@@ -36,6 +36,22 @@ public class BrandWithDetailResponse extends BrandResponse {
   private String phone;
   private String email;
   private SocialMediaResponse socialMedia;
-  private List<ResourceResponse> images;
-  private List<ResourceResponse> videos;
+  @Singular private List<ResourceResponse> images;
+  @Singular private List<ResourceResponse> videos;
+
+  public List<Integer> getProductCategoriesIds() {
+    return List.copyOf(productCategoriesIds);
+  }
+
+  public List<Integer> getFeaturedProductsIds() {
+    return List.copyOf(featuredProductsIds);
+  }
+
+  public List<ResourceResponse> getImages() {
+    return List.copyOf(images);
+  }
+
+  public List<ResourceResponse> getVideos() {
+    return List.copyOf(videos);
+  }
 }

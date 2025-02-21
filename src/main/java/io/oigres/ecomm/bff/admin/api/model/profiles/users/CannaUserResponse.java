@@ -18,11 +18,11 @@
 package io.oigres.ecomm.bff.admin.api.model.profiles.users;
 
 import io.oigres.ecomm.bff.admin.api.model.UserResponse;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
+@Getter
+@SuperBuilder
 public class CannaUserResponse extends UserResponse {
   private String firstName;
   private String lastName;
