@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UpdateDispensaryUserApiRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ecomm - Admin backend for frontend</a> &gt; <a href="index.source.html" class="el_package">io.oigres.ecomm.bff.admin.api.model.profiles.dispensaries</a> &gt; <span class="el_source">UpdateDispensaryUserApiRequest.java</span></div><h1>UpdateDispensaryUserApiRequest.java</h1><pre class="source lang-java linenums">/**********
+ This project is free software; you can redistribute it and/or modify it under
+ the terms of the GNU General Public License as published by the
+ Free Software Foundation; either version 3.0 of the License, or (at your
+ option) any later version. (See &lt;https://www.gnu.org/licenses/gpl-3.0.html&gt;.)
+
+ This project is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this project; if not, write to the Free Software Foundation, Inc.,
+ 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+ **********/
+// Copyright (c) 2024-2025 Sergio Exposito.  All rights reserved.              
+
+package io.oigres.ecomm.bff.admin.api.model.profiles.dispensaries;
+
+import io.oigres.ecomm.bff.admin.api.model.ResourceRequest;
+import io.oigres.ecomm.bff.admin.api.model.SocialMediaRequest;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.List;
+import lombok.*;
+
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
+public class UpdateDispensaryUserApiRequest implements Serializable {
+  @Schema(name = &quot;name&quot;, example = &quot;&quot;, required = true)
+  @NotEmpty
+  private String name;
+
+  @Schema(name = &quot;description&quot;, example = &quot;&quot;, required = true)
+  @NotEmpty
+  private String description;
+
+  @Schema(name = &quot;email&quot;, example = &quot;dispensary@email.com&quot;, required = true)
+  @NotEmpty
+  @Email
+  private String email;
+
+  @Schema(name = &quot;password&quot;, example = &quot;&quot;, required = false)
+  private String password;
+
+  @Schema(name = &quot;address&quot;, example = &quot;&quot;, required = true)
+  @NotEmpty
+  private String address;
+
+  @Schema(name = &quot;logo&quot;, example = &quot;&quot;, required = true)
+  @NotEmpty
+  private String logo;
+
+  @Schema(name = &quot;license&quot;, example = &quot;&quot;, required = true)
+  @NotEmpty
+  private String license;
+
+  @Schema(
+      name = &quot;licenseStatus&quot;,
+      allowableValues = &quot;PENDING, APPROVED, REJECTED&quot;,
+      example = &quot;PENDING&quot;,
+      required = true)
+  @NotEmpty(message = &quot;licenseStatus must not be empty&quot;)
+  private String licenseStatus;
+
+  @Schema(name = &quot;socialMedia&quot;, example = &quot;&quot;, required = true)
+  @NotNull private SocialMediaRequest socialMedia;
+
+  @Schema(name = &quot;phone&quot;, example = &quot;&quot;, required = true)
+  @NotEmpty
+  private String phone;
+
+  @Schema(name = &quot;images&quot;, example = &quot;&quot;, required = false)
+  @Singular
+  private List&lt;ResourceRequest&gt; images;
+
+  @Schema(name = &quot;videos&quot;, example = &quot;&quot;, required = false)
+  @Singular
+  private List&lt;ResourceRequest&gt; videos;
+
+  @Schema(name = &quot;userId&quot;, example = &quot;&quot;, required = true)
+  @NotEmpty(message = &quot;userId must not be empty&quot;)
+  private Long userId;
+
+  public List&lt;ResourceRequest&gt; getImages() {
+<span class="nc" id="L91">    return List.copyOf(images);</span>
+  }
+
+  public List&lt;ResourceRequest&gt; getVideos() {
+<span class="nc" id="L95">    return List.copyOf(videos);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

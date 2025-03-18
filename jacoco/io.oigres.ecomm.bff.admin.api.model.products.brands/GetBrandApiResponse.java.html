@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GetBrandApiResponse.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ecomm - Admin backend for frontend</a> &gt; <a href="index.source.html" class="el_package">io.oigres.ecomm.bff.admin.api.model.products.brands</a> &gt; <span class="el_source">GetBrandApiResponse.java</span></div><h1>GetBrandApiResponse.java</h1><pre class="source lang-java linenums">/**********
+ This project is free software; you can redistribute it and/or modify it under
+ the terms of the GNU General Public License as published by the
+ Free Software Foundation; either version 3.0 of the License, or (at your
+ option) any later version. (See &lt;https://www.gnu.org/licenses/gpl-3.0.html&gt;.)
+
+ This project is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this project; if not, write to the Free Software Foundation, Inc.,
+ 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+ **********/
+// Copyright (c) 2024-2025 Sergio Exposito.  All rights reserved.              
+
+package io.oigres.ecomm.bff.admin.api.model.products.brands;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.List;
+import lombok.*;
+
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
+public class GetBrandApiResponse {
+  @Schema(name = &quot;id&quot;, example = &quot;1&quot;)
+  private Long id;
+
+  @Schema(name = &quot;name&quot;, example = &quot;Left Coast Extracts&quot;)
+  private String name;
+
+  @Schema(name = &quot;description&quot;, example = &quot; &quot;)
+  private String description;
+
+  @Schema(name = &quot;email&quot;, example = &quot;info@leftcoast.club&quot;)
+  private String email;
+
+  @Schema(name = &quot;license&quot;, example = &quot;0001070-LIC&quot;)
+  private String license;
+
+  @Schema(name = &quot;brandType&quot;, example = &quot;GROWER&quot;)
+  private String brandType;
+
+  @Schema(name = &quot;logoImageURL&quot;, example = &quot; &quot;)
+  private String logoImageURL;
+
+  @Schema(name = &quot;instagramURL&quot;, example = &quot; &quot;)
+  private String instagramURL;
+
+  @Schema(name = &quot;twitterURL&quot;, example = &quot; &quot;)
+  private String twitterURL;
+
+  @Schema(name = &quot;facebookURL&quot;, example = &quot; &quot;)
+  private String facebookURL;
+
+  @Schema(name = &quot;websiteURL&quot;, example = &quot; &quot;)
+  private String websiteURL;
+
+  @Schema(name = &quot;adminId&quot;, example = &quot;0&quot;)
+  private Integer adminId;
+
+  @Schema(name = &quot;enabled&quot;, example = &quot; &quot;)
+  private Boolean enabled;
+
+  @Schema(name = &quot;licenseStatus&quot;, example = &quot; &quot;)
+  private String licenseStatus;
+
+  @Schema(name = &quot;phone&quot;, example = &quot; &quot;)
+  private String phone;
+
+  @Schema(name = &quot;address&quot;, example = &quot; &quot;)
+  private String address;
+
+  @Schema(name = &quot;ucpc&quot;, example = &quot; &quot;)
+  private String ucpc;
+
+  @Schema(name = &quot;categoriesIds&quot;, example = &quot; &quot;)
+  @Singular
+  private List&lt;Integer&gt; categoriesIds;
+
+  @Schema(name = &quot;featuresProductsIds&quot;, example = &quot; &quot;)
+  @Singular
+  private List&lt;Integer&gt; featuresProductsIds;
+
+  @Schema(name = &quot;images&quot;, example = &quot; &quot;)
+  @Singular
+  private List&lt;String&gt; images;
+
+  @Schema(name = &quot;videos&quot;, example = &quot; &quot;)
+  @Singular
+  private List&lt;String&gt; videos;
+
+  public List&lt;Integer&gt; getCategoriesIds() {
+<span class="nc" id="L97">    return List.copyOf(categoriesIds);</span>
+  }
+
+  public List&lt;Integer&gt; getFeaturesProductsIds() {
+<span class="nc" id="L101">    return List.copyOf(featuresProductsIds);</span>
+  }
+
+  public List&lt;String&gt; getImages() {
+<span class="nc" id="L105">    return List.copyOf(images);</span>
+  }
+
+  public List&lt;String&gt; getVideos() {
+<span class="nc" id="L109">    return List.copyOf(videos);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

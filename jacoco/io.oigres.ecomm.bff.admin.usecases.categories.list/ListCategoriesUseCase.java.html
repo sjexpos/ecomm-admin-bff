@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ListCategoriesUseCase.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ecomm - Admin backend for frontend</a> &gt; <a href="index.source.html" class="el_package">io.oigres.ecomm.bff.admin.usecases.categories.list</a> &gt; <span class="el_source">ListCategoriesUseCase.java</span></div><h1>ListCategoriesUseCase.java</h1><pre class="source lang-java linenums">/**********
+ This project is free software; you can redistribute it and/or modify it under
+ the terms of the GNU General Public License as published by the
+ Free Software Foundation; either version 3.0 of the License, or (at your
+ option) any later version. (See &lt;https://www.gnu.org/licenses/gpl-3.0.html&gt;.)
+
+ This project is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this project; if not, write to the Free Software Foundation, Inc.,
+ 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+ **********/
+// Copyright (c) 2024-2025 Sergio Exposito.  All rights reserved.              
+
+package io.oigres.ecomm.bff.admin.usecases.categories.list;
+
+import io.oigres.ecomm.bff.admin.api.model.CategoryResponse;
+import io.oigres.ecomm.bff.admin.api.model.PaginatedResponse;
+import io.oigres.ecomm.bff.admin.usecases.UseCase;
+import io.oigres.ecomm.service.products.model.CategoryService;
+import io.oigres.ecomm.service.products.model.PageResponse;
+import io.oigres.ecomm.service.products.model.PageableRequestImpl;
+import io.oigres.ecomm.service.products.model.category.GetAllCategoriesResponse;
+import java.util.List;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
+
+@RequiredArgsConstructor
+@Component
+public class ListCategoriesUseCase implements UseCase {
+  private final CategoryService categoryService;
+
+  public PaginatedResponse&lt;CategoryResponse&gt; listCategories(int pageNumber, int pageSize) {
+<span class="fc" id="L37">    PageResponse&lt;GetAllCategoriesResponse&gt; pages =</span>
+<span class="fc" id="L38">        categoryService.getAllCategories(PageableRequestImpl.of(pageNumber, pageSize));</span>
+<span class="fc" id="L39">    List&lt;CategoryResponse&gt; categories =</span>
+<span class="fc" id="L40">        pages.getContent().stream()</span>
+<span class="fc" id="L41">            .map(</span>
+                el -&gt;
+<span class="nc" id="L43">                    (CategoryResponse)</span>
+<span class="nc" id="L44">                        CategoryResponse.builder().id(el.getId()).name(el.getName()).build())</span>
+<span class="fc" id="L45">            .toList();</span>
+<span class="fc" id="L46">    return new PaginatedResponse&lt;&gt;(</span>
+<span class="fc" id="L47">        categories, pages.getTotalPages(), pageNumber, pageSize, pages.getTotalElements());</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AsyncDispensariesServiceProxyEnhanced.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ecomm - Admin backend for frontend</a> &gt; <a href="index.source.html" class="el_package">io.oigres.ecomm.bff.admin.config.rpc</a> &gt; <span class="el_source">AsyncDispensariesServiceProxyEnhanced.java</span></div><h1>AsyncDispensariesServiceProxyEnhanced.java</h1><pre class="source lang-java linenums">/**********
+ This project is free software; you can redistribute it and/or modify it under
+ the terms of the GNU General Public License as published by the
+ Free Software Foundation; either version 3.0 of the License, or (at your
+ option) any later version. (See &lt;https://www.gnu.org/licenses/gpl-3.0.html&gt;.)
+
+ This project is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this project; if not, write to the Free Software Foundation, Inc.,
+ 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+ **********/
+// Copyright (c) 2024-2025 Sergio Exposito.  All rights reserved.              
+
+package io.oigres.ecomm.bff.admin.config.rpc;
+
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
+import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
+import io.oigres.ecomm.service.products.api.AsyncDispensariesService;
+import io.oigres.ecomm.service.products.model.PageResponse;
+import io.oigres.ecomm.service.products.model.PageableRequest;
+import io.oigres.ecomm.service.products.model.dispensary.*;
+import java.util.concurrent.CompletableFuture;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import reactor.core.publisher.Mono;
+
+<span class="fc" id="L32">@Slf4j</span>
+@RequiredArgsConstructor
+public class AsyncDispensariesServiceProxyEnhanced implements AsyncDispensariesService {
+
+  private final AsyncDispensariesService asyncDispensariesService;
+
+  @Override
+  @CircuitBreaker(name = &quot;remote-gets&quot;, fallbackMethod = &quot;fallbackMethodForGetDispensaryByIdAsync&quot;)
+  // @Retry(name = &quot;remote-get-by-id-200-expected&quot;) does not work when @CircuitBreaker is added
+  @TimeLimiter(name = &quot;remote-get-by-id&quot;)
+  public CompletableFuture&lt;GetDispensaryResponse&gt; getDispensaryByIdAsync(Long dispensaryId) {
+<span class="fc" id="L43">    return asyncDispensariesService.getDispensaryByIdAsync(dispensaryId);</span>
+  }
+
+  private CompletableFuture&lt;GetDispensaryResponse&gt; fallbackMethodForGetDispensaryByIdAsync(
+      Long dispensaryId, Exception exception) {
+<span class="fc" id="L48">    log.warn(</span>
+<span class="fc" id="L49">        String.format(&quot;Executing fallback method for getDispensaryByIdAsync(%d)&quot;, dispensaryId));</span>
+<span class="fc" id="L50">    return Mono.just(GetDispensaryResponse.builder().id(dispensaryId).name(&quot;Not available&quot;).build())</span>
+<span class="fc" id="L51">        .toFuture();</span>
+  }
+
+  @Override
+  @Retry(name = &quot;remote-get-page-200-expected&quot;)
+  @TimeLimiter(name = &quot;remote-get-page&quot;)
+  public CompletableFuture&lt;? extends PageResponse&lt;GetAllDispensaryResponse&gt;&gt;
+      getAllDispensariesAsync(PageableRequest pageable) {
+<span class="fc" id="L59">    return asyncDispensariesService.getAllDispensariesAsync(pageable);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
